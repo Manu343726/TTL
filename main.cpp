@@ -12,6 +12,7 @@
 
 #include "algoritm.hpp"
 #include "tuple_iterator.hpp"
+#include "tuple_call.hpp"
 
 struct to_string
 {
@@ -26,10 +27,35 @@ struct to_string
     }
 };
 
+struct hey
+{
+    void operator()( int i ) const
+    {
+        std::cout << "Hey, an int! " << i << std::endl;
+    }
+    
+    void operator()( char i ) const
+    {
+        std::cout << "Hey, a char! " << i << std::endl;
+    }
+    
+    void operator()( bool i ) const
+    {
+        std::cout << "Hey, a bool! " << std::boolalpha << i << std::endl;
+    }
+};
+
+
+void f( const std::string& a , const std::string& b , const std::string& c )
+{
+    std::cout << a + b + c << std::endl;
+}
+
 int main() 
 {
     auto tuple = std::make_tuple( 1 , 'a' , true );
     std::tuple<std::string,std::string,std::string> dest;
+    auto numbers = std::make_tuple( 1,2,3 );
     
     ttl::transform( std::begin(tuple) , std::end(tuple) , std::begin(dest) , to_string{} );
     
@@ -37,5 +63,17 @@ int main()
               << std::get<0>( dest ) << "," 
               << std::get<1>( dest ) << "," 
               << std::get<2>( dest ) << ")" << std::endl;
+    
+    ttl::tuple_call( f , dest );
+    
+    ttl::for_each( std::begin( tuple ) , std::end( tuple ) , hey{} );
+    
+    std::cout << ttl::foldl( std::begin( numbers ) , std::end( numbers ) ,
+                             []( int e , int x )
+                             {
+                                 return e + x;
+                             } ,
+                             0
+                           );
 }
 
