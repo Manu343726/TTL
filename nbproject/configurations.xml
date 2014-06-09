@@ -5,7 +5,7 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>algoritm.hpp</itemPath>
-      <itemPath>iterator.hpp</itemPath>
+      <itemPath>tuple_iterator.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -43,9 +43,9 @@
       </compileType>
       <item path="algoritm.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="iterator.hpp" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tuple_iterator.hpp" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -70,9 +70,9 @@
       </compileType>
       <item path="algoritm.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="iterator.hpp" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tuple_iterator.hpp" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

@@ -17,7 +17,7 @@ namespace ttl
         {
             *d_begin = f( *begin );
             
-            transform( begin++ , end , d_begin++ );
+            ttl::transform( begin++ , end , d_begin++ , f );
         }
     }
 }
