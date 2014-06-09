@@ -50,3 +50,6 @@ Many of that features are easy to implement and pretty common. The goal is not t
          std::tuple<std::string,std::string,std::string> output;
          
          ttl::transform( std::begin( input ) , std::end( input ) , std::begin( output ) , std::to_string );
+         
+
+Anybody who has more ideas, features, or knows usefull tuple tricks, is free to do suggestions! Please use the issues system.  
