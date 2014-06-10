@@ -13,7 +13,7 @@ IMHO C++(11) tuples just suck. They are wonderfull to do some usefull tricks, li
         return std::tie( lhs.bar , lhs.quux ) < std::tie( rhs.bar , rhs.quux );
     }
     
-But when what we need is just a... yep, just a tuple; they sucks. Everybody who have worked with C++ tuples know what I mean:
+But when what we need is just a... well, just a tuple; they sucks. Everybody who have worked with C++ tuples know what I mean:
 
     auto tuple = std::make_tuple( 1 , true , 'a' );
 
@@ -54,9 +54,9 @@ Many of that features are easy to implement and pretty common. The goal is not t
    helps a lot:
 
          ttl::transform( std::begin( input ) , std::end( input ) , std::begin( output ) , ttl::make_overloaded_function(
-                         []( int  i ) { retrun std::string{ "That was an int" }; },
-                         []( char c ) { retrun std::string{ "That was a char" }; },
-                         []( bool b ) { retrun std::string{ "That was a bool" }; } )
+                         []( int  i ) { return std::string{ "That was an int" }; },
+                         []( char c ) { return std::string{ "That was a char" }; },
+                         []( bool b ) { return std::string{ "That was a bool" }; } )
                        );
 
          std::cout << input << " --> " << output << std::endl;
