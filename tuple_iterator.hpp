@@ -171,6 +171,13 @@ namespace ttl
             }
         };
     }
+    
+    
+    template<std::size_t INDEX , typename... ARGS>
+    ttl::tuple_iterator<INDEX,ARGS...> iterator( std::tuple<ARGS...>& tuple )
+    {
+        return ttl::tuple_iterator<INDEX,ARGS...>{ tuple };
+    }
 }
 
 namespace std

@@ -13,6 +13,8 @@
 #include "algoritm.hpp"
 #include "tuple_iterator.hpp"
 #include "tuple_call.hpp"
+#include "runtime_tuple_indexer.hpp"
+#include "overloaded_function.hpp"
 
 struct to_string
 {
@@ -51,11 +53,16 @@ void f( const std::string& a , const std::string& b , const std::string& c )
     std::cout << a + b + c << std::endl;
 }
 
+
+auto function = ttl::make_overloaded_function( [&](){ std::cout << "No args" << std::endl; } ,
+                                               [&](int){ std::cout << "Int arg" << std::endl; } );
 int main() 
 {
     auto tuple = std::make_tuple( 1 , 'a' , true );
     std::tuple<std::string,std::string,std::string> dest;
-    auto numbers = std::make_tuple( 1,2,3 );
+    auto numbers = std::make_tuple( 1,2,3,4,5,6,7,8,9 );
+    
+    auto indexer = ttl::make_indexer( numbers );
     
     ttl::transform( std::begin(tuple) , std::end(tuple) , std::begin(dest) , to_string{} );
     
@@ -68,12 +75,17 @@ int main()
     
     ttl::for_each( std::begin( tuple ) , std::end( tuple ) , hey{} );
     
-    std::cout << ttl::foldl( std::begin( numbers ) , std::end( numbers ) ,
+    std::cout << ttl::foldl( ttl::iterator<2>( numbers ) , ttl::iterator<7>( numbers ) ,
                              []( int e , int x )
                              {
                                  return e + x;
                              } ,
                              0
-                           );
+                           ) << std::endl;
+                             
+    std::cout << indexer(0,int{}) << std::endl;
+    
+    function(1);
+    function();
 }
 
