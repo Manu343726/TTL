@@ -42,7 +42,6 @@ Many of that features are easy to implement and pretty common. The goal is not t
  
          int i = ttl::tuple_call( [](int , bool , char){ return 1; } , std::make_tuple(1,true,'a') );
          
-    *The lack of C++14 polymorphic lambdas is a problem, I know :(*
     
  - **`<algoritm>`-like algorithms for tuples**: What if we need to transform the elements of a tuple? What if we need to filter some elements of a tuple conditionally? The standard `algorithm>` library doesn't provide any way. But TTL does!:
  
@@ -50,6 +49,20 @@ Many of that features are easy to implement and pretty common. The goal is not t
          std::tuple<std::string,std::string,std::string> output;
          
          ttl::transform( std::begin( input ) , std::end( input ) , std::begin( output ) , std::to_string );
-         
+ 
+   But wait, since C++11 I use lambdas for algorithms always! And C++11 has no polymorphic lambdas support :(. Don't worry, TTL implements `ttl::overloaded_function`, which
+   helps a lot:
+
+         ttl::transform( std::begin( input ) , std::end( input ) , std::begin( output ) , ttl::make_overloaded_function(
+                         []( int  i ) { retrun std::string{ "That was an int" }; },
+                         []( char c ) { retrun std::string{ "That was a char" }; },
+                         []( bool b ) { retrun std::string{ "That was a bool" }; } )
+                       );
+
+         std::cout << input << " --> " << output << std::endl;
+
+
+   > (1,true,a) --> (That was an int,That was a char,That was a bool)
+
 
 Anybody who has more ideas, features, or knows usefull tuple tricks, is free to do suggestions! Please use the issues system.  
