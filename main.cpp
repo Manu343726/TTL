@@ -54,8 +54,9 @@ void f( const std::string& a , const std::string& b , const std::string& c )
 }
 
 
-auto function = ttl::make_overloaded_function( [&](){ std::cout << "No args" << std::endl; } ,
-                                               [&](int){ std::cout << "Int arg" << std::endl; } );
+auto hey2 = ttl::make_overloaded_function( [&](int  i){ std::cout << "Hey, an int! " << i << std::endl; } ,
+                                           [&](char i){ std::cout << "Hey, a char! " << i << std::endl; } ,
+                                           [&](bool i){ std::cout << "Hey, a bool! " << std::boolalpha << i << std::endl; } );
 int main() 
 {
     auto tuple = std::make_tuple( 1 , 'a' , true );
@@ -73,7 +74,7 @@ int main()
     
     ttl::tuple_call( f , dest );
     
-    ttl::for_each( std::begin( tuple ) , std::end( tuple ) , hey{} );
+    ttl::for_each( std::begin( tuple ) , std::end( tuple ) , hey2 );
     
     std::cout << ttl::foldl( ttl::iterator<2>( numbers ) , ttl::iterator<7>( numbers ) ,
                              []( int e , int x )
@@ -84,8 +85,5 @@ int main()
                            ) << std::endl;
                              
     std::cout << indexer(0,int{}) << std::endl;
-    
-    function(1);
-    function();
 }
 
