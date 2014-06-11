@@ -19,7 +19,7 @@ But when what we need is just a... well, just a tuple; they sucks. Everybody who
 
     auto third = std::get<0>( tuple ); //No runtime indexing?
     
-    std::cout << tuple << std::endl; // <-- Hunderds of template related errors. How horrible and difficult was to overload
+    std::cout << tuple << std::endl; // <-- hundreds of template related errors. How horrible and difficult was to overload
                                      //     << to just print "(1,true,a)", isn't?
                                      
 
@@ -43,7 +43,7 @@ Many of that features are easy to implement and pretty common. The goal is not t
          int i = ttl::tuple_call( [](int , bool , char){ return 1; } , std::make_tuple(1,true,'a') );
          
     
- - **`<algoritm>`-like algorithms for tuples**: What if we need to transform the elements of a tuple? What if we need to filter some elements of a tuple conditionally? The standard `algorithm>` library doesn't provide any way. But TTL does!:
+ - **`<algorithm>`-like algorithms for tuples**: What if we need to transform the elements of a tuple? What if we need to filter some elements of a tuple conditionally? The standard `<algorithm>` library doesn't provide any way. But TTL does!:
  
          auto input = std::make_tuple(1,true,'a');
          std::tuple<std::string,std::string,std::string> output;
