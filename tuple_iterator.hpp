@@ -5,8 +5,8 @@
  * Created on 9 de junio de 2014, 14:18
  */
 
-#ifndef ITERATOR_HPP
-#define	ITERATOR_HPP
+#ifndef TUPLE_ITERATOR_HPP
+#define	TUPLE_ITERATOR_HPP
 
 #include <tuple>
 #include <functional>
@@ -38,7 +38,6 @@ namespace ttl
         public:
             static_assert( INDEX < sizeof...(ARGS) , "ERROR: Index out of bounds" );
 
-
             using tuple_type = std::tuple<ARGS...>;
             using value_type = typename std::tuple_element<INDEX,tuple_type>::type;
             using index      = std::integral_constant<std::size_t,INDEX>;
@@ -60,6 +59,11 @@ namespace ttl
             }
 
             value_type& operator*()
+            {
+                return std::get<INDEX>( _tuple_ref.get() );
+            }
+            
+            const value_type& operator*() const
             {
                 return std::get<INDEX>( _tuple_ref.get() );
             }
@@ -129,6 +133,13 @@ namespace ttl
                 throw std::out_of_range{""};
             }
 
+            tuple_end_value& operator*() const
+            {
+                static tuple_end_value holder;
+                
+                return holder;
+            }
+            
             tuple_end_value& operator*()
             {
                 static tuple_end_value holder;
@@ -178,6 +189,14 @@ namespace ttl
     {
         return ttl::tuple_iterator<INDEX,ARGS...>{ tuple };
     }
+    
+    template<std::size_t LHS_I , typename... LHS_ARGS , typename RHS>
+    ttl::tuple_iterator<LHS_I,LHS_ARGS...>& assign( ttl::tuple_iterator<LHS_I,LHS_ARGS...>& lhs , const RHS& rhs )
+    {
+        *lhs = rhs;
+
+        return lhs;
+    }
 }
 
 namespace std
@@ -195,5 +214,5 @@ namespace std
     }
 }
 
-#endif	/* ITERATOR_HPP */
+#endif	/* TUPLE_ITERATOR_HPP */
 

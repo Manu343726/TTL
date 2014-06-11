@@ -15,6 +15,7 @@
 #include "tuple_call.hpp"
 #include "runtime_tuple_indexer.hpp"
 #include "overloaded_function.hpp"
+#include "back_inserter.hpp"
 
 struct to_string
 {
@@ -85,5 +86,14 @@ int main()
                            ) << std::endl;
                              
     std::cout << indexer(0,int{}) << std::endl;
+    
+    auto callback = [&](T t){ return t; };
+    
+    ttl::transform( std::begin( numbers ) , std::end( numbers ) , ttl::back_inserter( callback ) ,
+                    []( int x )
+                    {
+                        return 2*x;
+                    }
+                  );
 }
 
