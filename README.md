@@ -75,11 +75,11 @@ Many of that features are easy to implement and pretty common. The goal is not t
                          std::to_string 
                        );
 
-       //Copy the contents of a vector to a tuple!
-       std::vector<int> v = { 1 , 2 , 3 , 4 };
-       std::tuple<int,int,int,int> t;
+         //Copy the contents of a vector to a tuple!
+         std::vector<int> v = { 1 , 2 , 3 , 4 };
+         std::tuple<int,int,int,int> t;
 
-       ttl::transform( std::begin( v ) , std::end( v ) , std::begin( t ) , []( int i ){ return i*2; } );
+         ttl::transform( std::begin( v ) , std::end( v ) , std::begin( t ) , []( int i ){ return i*2; } );
 
 
 Anybody who has more ideas, features, or knows usefull tuple tricks, is free to do suggestions! Please use the issues system.  
