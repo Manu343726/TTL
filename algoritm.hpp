@@ -14,6 +14,7 @@
 #include "Turbo/function.hpp"
 #include "Turbo/eval.hpp"
 #include "Turbo/utils/assert.hpp"
+#include "tuple_iterator.hpp"
 
 #include <tuple>
 #include <type_traits>
@@ -22,25 +23,29 @@ namespace ttl
 {
     namespace impl
     {
-        template<typename BEGIN , typename is_end = tml::Bool<BEGIN::is_end>>
+        template<typename BEGIN , typename DBEGIN , typename is_end = tml::eval<tml::logical_or<ttl::is_tuple_end_iterator<BEGIN>,
+                                                                                                ttl::is_tuple_end_iterator<DBEGIN>
+                                                                                               >
+                                                                               >
+                >
         struct transform_algorithm
         {
-            template<typename F , typename END , typename DBEGIN>
+            template<typename F , typename END>
             static void execute( BEGIN begin , END end , DBEGIN d_begin , F f )
             {
                 if( begin != end )
                 {
                     auto next = ttl::assign( d_begin , f(*begin) );
 
-                    ttl::impl::transform_algorithm<decltype(begin++)>::execute( begin++ , end , next++ , f );
+                    ttl::impl::transform_algorithm<decltype(++begin),decltype(++next)>::execute( ++begin , end , ++next , f );
                 }
             }
         };
         
-        template<typename BEGIN>
-        struct transform_algorithm<BEGIN,tml::true_type>
+        template<typename BEGIN , typename DBEGIN>
+        struct transform_algorithm<BEGIN,DBEGIN,tml::true_type>
         {
-            template<typename F , typename END , typename DBEGIN>
+            template<typename F , typename END>
             static void execute( BEGIN begin , END end , DBEGIN d_begin , F f )
             {}
         };
@@ -49,7 +54,7 @@ namespace ttl
     template<typename F , typename BEGIN , typename END , typename DBEGIN>
     void transform( BEGIN begin , END end , DBEGIN d_begin , F f )
     {
-        ttl::impl::transform_algorithm<BEGIN>::execute( begin , end , d_begin , f );
+        ttl::impl::transform_algorithm<BEGIN,DBEGIN>::execute( begin , end , d_begin , f );
     }
     
     
@@ -63,10 +68,10 @@ namespace ttl
             {
                 auto next = ttl::assign( d_begin , *begin );
                 
-                copy_if( begin++ , end , next++ , f );
+                copy_if( ++begin , end , ++next , f );
             }
             else
-                copy_if( begin++ , end , d_begin , f );
+                copy_if( ++begin , end , d_begin , f );
         }
     }
     
@@ -81,7 +86,7 @@ namespace ttl
         {
             f( *begin );
             
-            ttl::for_each( begin++ , end , f );
+            ttl::for_each( ++begin , end , f );
         }
     }
     
@@ -96,7 +101,7 @@ namespace ttl
     {
         if( begin != end )
         {
-            return ttl::foldl( begin++ , end , f , f(state,*begin) );
+            return ttl::foldl( ++begin , end , f , f(state,*begin) );
         }
         else
             return state;
@@ -113,7 +118,7 @@ namespace ttl
     {
         if( begin != end )
         {
-            return f( *begin , ttl::foldr( begin++ , end , f , state ) );
+            return f( *begin , ttl::foldr( ++begin , end , f , state ) );
         }
         else
             return state;

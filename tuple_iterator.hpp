@@ -48,12 +48,12 @@ namespace ttl
                 _tuple_ref{ tuple }
             {}
 
-            ttl::tuple_iterator<INDEX+1,ARGS...> operator++(int)
+            ttl::tuple_iterator<INDEX+1,ARGS...> operator++()
             {
                 return ttl::tuple_iterator<INDEX+1,ARGS...>{ _tuple_ref };
             }
 
-            ttl::tuple_iterator<INDEX-1,ARGS...> operator--(int)
+            ttl::tuple_iterator<INDEX-1,ARGS...> operator--()
             {
                 return ttl::tuple_iterator<INDEX-1,ARGS...>{ _tuple_ref };
             }
@@ -123,14 +123,14 @@ namespace ttl
             {}
             
             
-            tuple_iterator operator++(int)
+            tuple_iterator operator++()
             {
-                throw std::out_of_range{""};
+                return *this;
             }
 
-            tuple_iterator operator--(int)
+            tuple_iterator operator--()
             {
-                throw std::out_of_range{""};
+                return *this;
             }
 
             tuple_end_value& operator*() const
@@ -189,6 +189,21 @@ namespace ttl
     {
         return ttl::tuple_iterator<INDEX,ARGS...>{ tuple };
     }
+    
+    namespace impl
+    {
+        template<typename IT>
+        struct is_tuple_end_iterator : public tml::function<tml::false_type>
+        {};
+        
+        template<std::size_t INDEX , typename... ARGS>
+        struct is_tuple_end_iterator<ttl::impl::tuple_iterator<INDEX,tml::list<ARGS...>,true>> : public tml::function<tml::true_type>
+        {};
+    }
+    
+    template<typename IT>
+    using is_tuple_end_iterator = tml::eval<ttl::impl::is_tuple_end_iterator<IT>>;
+        
 }
 
 namespace std

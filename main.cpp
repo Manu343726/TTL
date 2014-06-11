@@ -65,8 +65,6 @@ int main()
     std::tuple<std::string,std::string,std::string> dest;
     auto numbers = std::make_tuple( 1,2,3,4,5,6,7,8,9 );
     
-    auto indexer = ttl::make_indexer( numbers );
-    
     ttl::transform( std::begin(tuple) , std::end(tuple) , std::begin(dest) , to_string{} );
     
     std::cout << "(" << std::boolalpha
@@ -86,14 +84,21 @@ int main()
                              0
                            ) << std::endl;
                              
-    std::cout << indexer(0,int{}) << std::endl;
                   
     std::vector<std::string> output_vector;
+    std::vector<int> vector = { 11 , 22 , 33 , 44 };
     
+    ttl::transform( std::begin( vector ) , std::end( vector ) , std::begin( numbers ) , []( int i ){ return 2*i;  } ); 
     ttl::transform( std::begin( tuple ) , std::end( tuple ) , std::back_inserter( output_vector ) , to_string{} );
     ttl::transform( std::begin( tuple ) , std::end( tuple ) , std::ostream_iterator<std::string>( std::cout , "|" ) , to_string{} );
     
+    
     for( const auto& str : output_vector )
         std::cout << std::endl << str;
+    
+        std::cout << std::endl << "(" << std::boolalpha
+              << std::get<0>( numbers ) << "," 
+              << std::get<1>( numbers ) << "," 
+              << std::get<2>( numbers ) << ")" << std::endl;
 }
 
