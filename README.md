@@ -68,8 +68,11 @@ Many of that features are easy to implement and pretty common. The goal is not t
    Don't worry, TTL takes care of these. The TTL algorithms are dessigned to work with non-tuple types as output, so any
    technique you use with STL algorithms will work with tuples too:
 
-       //Send the contents of a tuple to std::cout!
-       ttl::transform( std::begin( tuple ) , std::end( tuple ) , std::ostream_iterator<std::string>( std::cout , " " ) , std::to_string );
+         //Send the contents of a tuple to std::cout!
+         ttl::transform( std::begin( tuple ) , std::end( tuple ) , 
+                         std::ostream_iterator<std::string>( std::cout , " " ) , 
+                         std::to_string 
+                       );
 
 
 Anybody who has more ideas, features, or knows usefull tuple tricks, is free to do suggestions! Please use the issues system.  
