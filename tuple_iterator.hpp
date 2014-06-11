@@ -189,14 +189,6 @@ namespace ttl
     {
         return ttl::tuple_iterator<INDEX,ARGS...>{ tuple };
     }
-    
-    template<std::size_t LHS_I , typename... LHS_ARGS , typename RHS>
-    ttl::tuple_iterator<LHS_I,LHS_ARGS...>& assign( ttl::tuple_iterator<LHS_I,LHS_ARGS...>& lhs , const RHS& rhs )
-    {
-        *lhs = rhs;
-
-        return lhs;
-    }
 }
 
 namespace std

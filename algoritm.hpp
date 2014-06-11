@@ -8,25 +8,51 @@
 #ifndef ALGORITM_HPP
 #define	ALGORITM_HPP
 
-#include "tuple_iterator.hpp"
+#include "assign.hpp"
+
 #include "Turbo/enable_if.hpp"
 #include "Turbo/function.hpp"
+#include "Turbo/eval.hpp"
+#include "Turbo/utils/assert.hpp"
 
 #include <tuple>
 #include <type_traits>
 
 namespace ttl
 {
+    namespace impl
+    {
+        template<typename BEGIN , typename is_end = tml::Bool<BEGIN::is_end>>
+        struct transform_algorithm
+        {
+            template<typename F , typename END , typename DBEGIN>
+            static void execute( BEGIN begin , END end , DBEGIN d_begin , F f )
+            {
+                if( begin != end )
+                {
+                    auto next = ttl::assign( d_begin , f(*begin) );
+
+                    ttl::impl::transform_algorithm<decltype(begin++)>::execute( begin++ , end , next++ , f );
+                }
+            }
+        };
+        
+        template<typename BEGIN>
+        struct transform_algorithm<BEGIN,tml::true_type>
+        {
+            template<typename F , typename END , typename DBEGIN>
+            static void execute( BEGIN begin , END end , DBEGIN d_begin , F f )
+            {}
+        };
+    }
+    
     template<typename F , typename BEGIN , typename END , typename DBEGIN>
     void transform( BEGIN begin , END end , DBEGIN d_begin , F f )
     {
-        if( begin != end )
-        {
-            auto next = ttl::assign( d_begin , f( *begin ) );
-            
-            ttl::transform( begin++ , end , next++ , f );
-        }
+        ttl::impl::transform_algorithm<BEGIN>::execute( begin , end , d_begin , f );
     }
+    
+    
     
     template<typename F , typename BEGIN , typename END , typename DBEGIN>
     void copy_if( BEGIN begin , END end , DBEGIN d_begin , F f )

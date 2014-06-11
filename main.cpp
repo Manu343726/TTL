@@ -9,13 +9,14 @@
 #include <tuple>
 #include <string>
 #include <sstream>
+#include <vector>
 
 #include "algoritm.hpp"
 #include "tuple_iterator.hpp"
 #include "tuple_call.hpp"
 #include "runtime_tuple_indexer.hpp"
 #include "overloaded_function.hpp"
-#include "back_inserter.hpp"
+//#include "back_inserter.hpp"
 
 struct to_string
 {
@@ -86,14 +87,13 @@ int main()
                            ) << std::endl;
                              
     std::cout << indexer(0,int{}) << std::endl;
+                  
+    std::vector<std::string> output_vector;
     
-    auto callback = [&](T t){ return t; };
+    ttl::transform( std::begin( tuple ) , std::end( tuple ) , std::back_inserter( output_vector ) , to_string{} );
+    ttl::transform( std::begin( tuple ) , std::end( tuple ) , std::ostream_iterator<std::string>( std::cout , "|" ) , to_string{} );
     
-    ttl::transform( std::begin( numbers ) , std::end( numbers ) , ttl::back_inserter( callback ) ,
-                    []( int x )
-                    {
-                        return 2*x;
-                    }
-                  );
+    for( const auto& str : output_vector )
+        std::cout << std::endl << str;
 }
 
