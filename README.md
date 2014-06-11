@@ -69,8 +69,11 @@ Many of that features are easy to implement and pretty common. The goal is not t
    ranges are not supported. Thats what the STL algorithms are dessigned for, isn't?).  
    So any technique you use with STL algorithms will work with tuples too:
 
-       //Send the contents of a tuple to std::cout!
-       ttl::transform( std::begin( tuple ) , std::end( tuple ) , std::ostream_iterator<std::string>( std::cout , " " ) , std::to_string );
+         //Send the contents of a tuple to std::cout!
+         ttl::transform( std::begin( tuple ) , std::end( tuple ) , 
+                         std::ostream_iterator<std::string>( std::cout , " " ) , 
+                         std::to_string 
+                       );
 
        //Copy the contents of a vector to a tuple!
        std::vector<int> v = { 1 , 2 , 3 , 4 };
