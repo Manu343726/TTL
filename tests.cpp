@@ -89,7 +89,6 @@ go_bandit([](){
             AssertThat( output , Equals( std::make_tuple( 1 , 2 , 3 , 4 ) ) );
         });
     });
-
 });
 
 int main(int argc, char* argv[])
