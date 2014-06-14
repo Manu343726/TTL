@@ -9,6 +9,7 @@
 #define	ALGORITM_HPP
 
 #include "assign.hpp"
+#include "utility_functions.hpp"
 
 #include "Turbo/enable_if.hpp"
 #include "Turbo/function.hpp"
@@ -57,7 +58,11 @@ namespace ttl
         ttl::impl::transform_algorithm<BEGIN,DBEGIN>::execute( begin , end , d_begin , f );
     }
     
-    
+    template<typename BEGIN , typename END , typename DBEGIN>
+    void copy( BEGIN begin , END end , DBEGIN d_begin )
+    {
+        ttl::impl::transform_algorithm<BEGIN,DBEGIN>::execute( begin , end , d_begin , ttl::identity{} );
+    }
     
     template<typename F , typename BEGIN , typename END , typename DBEGIN>
     void copy_if( BEGIN begin , END end , DBEGIN d_begin , F f )
