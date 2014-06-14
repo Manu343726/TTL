@@ -1,4 +1,4 @@
-TTL
+TTL [![Build Status](https://travis-ci.org/Manu343726/TTL.svg?branch=master)](https://travis-ci.org/Manu343726/TTL)
 ===
 
 C++11 Tuple Template Library
