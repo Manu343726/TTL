@@ -18,6 +18,20 @@ namespace ttl
             return v;
         }
     };
+    
+    struct to_string
+    {
+        template<typename T>
+        std::string operator()( const T& val )
+        {
+            return std::to_string( val );
+        }
+        
+        std::string operator()( const char* str )
+        {
+            return { str };
+        }
+    };
 }
 
 #endif	/* UTILITY_FUNCTIONS_HPP */
