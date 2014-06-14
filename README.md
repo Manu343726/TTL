@@ -48,7 +48,7 @@ Many of that features are easy to implement and pretty common. The goal is not t
          auto input = std::make_tuple(1,true,'a');
          std::tuple<std::string,std::string,std::string> output;
          
-         ttl::transform( std::begin( input ) , std::end( input ) , std::begin( output ) , std::to_string );
+         ttl::transform( std::begin( input ) , std::end( input ) , std::begin( output ) , ttl::to_string{} );
  
    But wait, since C++11 I use lambdas for algorithms always! And C++11 has no polymorphic lambdas support :(. Don't worry, TTL implements `ttl::overloaded_function`, which
    helps a lot:
@@ -72,7 +72,7 @@ Many of that features are easy to implement and pretty common. The goal is not t
          //Send the contents of a tuple to std::cout!
          ttl::transform( std::begin( tuple ) , std::end( tuple ) , 
                          std::ostream_iterator<std::string>( std::cout , " " ) , 
-                         std::to_string 
+                         ttl::to_string{} 
                        );
 
          //Copy the contents of a vector to a tuple!
