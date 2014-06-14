@@ -35,5 +35,5 @@ install:
 # command to run tests
 script: 
   - rm tests 
-  - echo "Compiling tests...\n"; clang++ tests.cpp -o tests -Ibandit-1.4.1 -std=c++11 -stdlib=libc++ -lc++abi
-  - echo "Running tests...\n"; ./tests --reporter=spec
+  - clang++ tests.cpp -o tests -Ibandit-1.1.4 -std=c++11 -stdlib=libc++ -lc++abi
+  - ./tests --reporter=spec
