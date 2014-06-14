@@ -4,6 +4,7 @@
 #include <vector>
 #include <array>
 #include <utility>
+#include <cstring>
 
 #include "algoritm.hpp"
 #include "tuple_iterator.hpp"
