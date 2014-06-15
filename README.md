@@ -1,4 +1,4 @@
-TTL
+TTL [![Build Status](https://travis-ci.org/Manu343726/TTL.svg?branch=master)](https://travis-ci.org/Manu343726/TTL)
 ===
 
 C++11 Tuple Template Library
@@ -28,7 +28,7 @@ But when what we need is just a... well, just a tuple; they sucks. Everybody who
 Some of that issues are inherent to the way C++ tuples work (They are just a library feature based on hard-level template-meta-programming), and others are just lacks on the standard library.  
 This library has the purpose of offer some common utilities, workarounds, and features to make the work with C++ tuples easy, avoiding become a "*Reinvent the wheel everyday*" process.  
 
-Many of that features are easy to implement and pretty common. The goal is not to write a so *hot-smarttest C++ tuple library in the world*. The goal is to make the everyday work easy, joining all that tuple tricks and workarounds in one simple and clear library.
+Many of that features are easy to implement and pretty common. The goal is not to write a so *hot-smarttest C++ tuple library in the world*. For that purpose Boost.Fusion is a good alternative. The goal is to make the everyday work easy, joining all that C++11 tuple tricks and workarounds in one simple and clear library.
 
 ## Planned features  
 
@@ -48,7 +48,7 @@ Many of that features are easy to implement and pretty common. The goal is not t
          auto input = std::make_tuple(1,true,'a');
          std::tuple<std::string,std::string,std::string> output;
          
-         ttl::transform( std::begin( input ) , std::end( input ) , std::begin( output ) , std::to_string );
+         ttl::transform( std::begin( input ) , std::end( input ) , std::begin( output ) , ttl::to_string{} );
  
    But wait, since C++11 I use lambdas for algorithms always! And C++11 has no polymorphic lambdas support :(. Don't worry, TTL implements `ttl::overloaded_function`, which
    helps a lot:
@@ -72,7 +72,7 @@ Many of that features are easy to implement and pretty common. The goal is not t
          //Send the contents of a tuple to std::cout!
          ttl::transform( std::begin( tuple ) , std::end( tuple ) , 
                          std::ostream_iterator<std::string>( std::cout , " " ) , 
-                         std::to_string 
+                         ttl::to_string{} 
                        );
 
          //Copy the contents of a vector to a tuple!
