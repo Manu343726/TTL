@@ -40,7 +40,7 @@ install:
   - clang++ -v
   - clang++ tests.cpp -o ./build/tests -I.. -I../include -I../bandit-1.1.4 -std=c++11
   - cd ..
-  - ls --all --list
+  - ls -al
 
 # command to run tests
 script: 
