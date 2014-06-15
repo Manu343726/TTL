@@ -34,7 +34,12 @@ install:
 
 # command to run tests
 script: 
-  - rm tests
+  - cd src
   - clang++ -v
-  - clang++ tests.cpp -o tests -Ibandit-1.1.4 -std=c++11
-  - ./tests --reporter=spec
+  - clang++ main.cpp -o main -std=c++11 -I.. -I../include
+  - ./main
+  - cd ../tests
+  - rm build/tests
+  - clang++ -v
+  - clang++ tests.cpp -I.. -I../include -o build/tests -Ibandit-1.1.4 -std=c++11
+  - ./build/tests --reporter=spec

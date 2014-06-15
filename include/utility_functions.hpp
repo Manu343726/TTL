@@ -8,6 +8,8 @@
 #ifndef UTILITY_FUNCTIONS_HPP
 #define	UTILITY_FUNCTIONS_HPP
 
+#include <string>
+
 namespace ttl
 {
     struct identity
