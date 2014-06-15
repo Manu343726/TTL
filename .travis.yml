@@ -33,16 +33,21 @@ install:
   - if [ "$CXX" == "clang++" ]; then CXX=clang++-3.4; fi
 
   - cd src
+  - mkdir ./build -p
   - clang++ -v
   - clang++ main.cpp -o main -std=c++11 -I.. -I../include
-  - cd ../tests
-  - mkdir ./build
+  
+  - cd ..
+  
+  - cd tests
+  - mkdir ./build -p
   - clang++ -v
   - clang++ tests.cpp -o ./build/tests -I.. -I../include -I../bandit-1.1.4 -std=c++11
+
   - cd ..
   - ls -al
 
 # command to run tests
 script: 
-  - .src/main
+  - .src/build/main
   - .tests/build/tests --reporter=spec
