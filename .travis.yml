@@ -37,7 +37,7 @@ install:
   - clang++ main.cpp -o main -std=c++11 -I.. -I../include
   - cd ../tests
   - clang++ -v
-  - clang++ tests.cpp -o build/tests -I.. -I../include -I../bandit-1.1.4 -std=c++11
+  - clang++ tests.cpp -o ./build/tests -I.. -I../include -I../bandit-1.1.4 -std=c++11
   - cd ..
 
 # command to run tests
