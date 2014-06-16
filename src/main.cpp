@@ -16,6 +16,7 @@
 #include "tuple_call.hpp"
 #include "runtime_tuple_indexer.hpp"
 #include "overloaded_function.hpp"
+#include "illformed_call.hpp"
 //#include "back_inserter.hpp"
 
 struct to_string
@@ -59,6 +60,12 @@ void f( const std::string& a , const std::string& b , const std::string& c )
 auto hey2 = ttl::make_overloaded_function( [&](int  i){ std::cout << "Hey, an int! " << i << std::endl; } ,
                                            [&](char i){ std::cout << "Hey, a char! " << i << std::endl; } ,
                                            [&](bool i){ std::cout << "Hey, a bool! " << std::boolalpha << i << std::endl; } );
+
+
+auto hey3 = ttl::make_illformed_call( hey2 , 0 );
+int i = hey3( 2.0f );
+std::string j = hey3( 1 );
+
 int main() 
 {
     auto tuple = std::make_tuple( 1 , 'a' , true );

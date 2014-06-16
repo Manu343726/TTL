@@ -5,8 +5,10 @@
       <itemPath>include/algoritm.hpp</itemPath>
       <itemPath>include/assign.hpp</itemPath>
       <itemPath>include/back_inserter.hpp</itemPath>
+      <itemPath>include/illformed_call.hpp</itemPath>
       <itemPath>include/overloaded_function.hpp</itemPath>
       <itemPath>include/runtime_tuple_indexer.hpp</itemPath>
+      <itemPath>include/static_if.hpp</itemPath>
       <itemPath>include/tuple_call.hpp</itemPath>
       <itemPath>include/tuple_iterator.hpp</itemPath>
       <itemPath>include/utility_functions.hpp</itemPath>
@@ -54,9 +56,13 @@
       </item>
       <item path="include/back_inserter.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/illformed_call.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/overloaded_function.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/runtime_tuple_indexer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/static_if.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/tuple_call.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -98,9 +104,13 @@
       </item>
       <item path="include/back_inserter.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/illformed_call.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/overloaded_function.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/runtime_tuple_indexer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/static_if.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/tuple_call.hpp" ex="false" tool="3" flavor2="0">
       </item>

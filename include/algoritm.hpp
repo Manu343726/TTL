@@ -52,6 +52,10 @@ namespace ttl
         };
     }
     
+    
+    
+    
+    
     template<typename F , typename BEGIN , typename END , typename DBEGIN>
     void transform( BEGIN begin , END end , DBEGIN d_begin , F f )
     {

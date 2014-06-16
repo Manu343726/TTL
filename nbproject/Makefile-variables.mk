@@ -7,21 +7,21 @@ CND_BASEDIR=`pwd`
 CND_BUILDDIR=build
 CND_DISTDIR=dist
 # Debug configuration
-CND_PLATFORM_Debug=LLVM/Clang-Linux-x86
-CND_ARTIFACT_DIR_Debug=dist/Debug/LLVM/Clang-Linux-x86
+CND_PLATFORM_Debug=CLang-Linux-x86
+CND_ARTIFACT_DIR_Debug=dist/Debug/CLang-Linux-x86
 CND_ARTIFACT_NAME_Debug=ttl
-CND_ARTIFACT_PATH_Debug=dist/Debug/LLVM/Clang-Linux-x86/ttl
-CND_PACKAGE_DIR_Debug=dist/Debug/LLVM/Clang-Linux-x86/package
+CND_ARTIFACT_PATH_Debug=dist/Debug/CLang-Linux-x86/ttl
+CND_PACKAGE_DIR_Debug=dist/Debug/CLang-Linux-x86/package
 CND_PACKAGE_NAME_Debug=ttl.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/LLVM/Clang-Linux-x86/package/ttl.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/CLang-Linux-x86/package/ttl.tar
 # Release configuration
-CND_PLATFORM_Release=LLVM/Clang-Linux-x86
-CND_ARTIFACT_DIR_Release=dist/Release/LLVM/Clang-Linux-x86
+CND_PLATFORM_Release=CLang-Linux-x86
+CND_ARTIFACT_DIR_Release=dist/Release/CLang-Linux-x86
 CND_ARTIFACT_NAME_Release=ttl
-CND_ARTIFACT_PATH_Release=dist/Release/LLVM/Clang-Linux-x86/ttl
-CND_PACKAGE_DIR_Release=dist/Release/LLVM/Clang-Linux-x86/package
+CND_ARTIFACT_PATH_Release=dist/Release/CLang-Linux-x86/ttl
+CND_PACKAGE_DIR_Release=dist/Release/CLang-Linux-x86/package
 CND_PACKAGE_NAME_Release=ttl.tar
-CND_PACKAGE_PATH_Release=dist/Release/LLVM/Clang-Linux-x86/package/ttl.tar
+CND_PACKAGE_PATH_Release=dist/Release/CLang-Linux-x86/package/ttl.tar
 #
 # include compiler specific variables
 #
