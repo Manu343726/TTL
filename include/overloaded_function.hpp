@@ -12,6 +12,7 @@
 #include <type_traits>
 
 #include "Turbo/eval.hpp"
+#include "Turbo/type_traits.hpp"
 
 namespace ttl
 {   
@@ -59,5 +60,14 @@ namespace ttl
     }
 }
 
-#endif	/* OVERLOADED_FUNCTION_HPP */
+namespace tml
+{
+    namespace impl
+    {
+        template<typename F , typename... Fs>
+        struct is_functor<ttl::overloaded_function<F,Fs...>> : public tml::function<tml::true_type>
+        {};
+    }
+}
 
+#endif	/* OVERLOADED_FUNCTION_HPP */

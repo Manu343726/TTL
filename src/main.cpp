@@ -10,6 +10,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <cassert>
 
 #include "algoritm.hpp"
 #include "tuple_iterator.hpp"
@@ -62,9 +63,9 @@ auto hey2 = ttl::make_overloaded_function( [&](int  i){ std::cout << "Hey, an in
                                            [&](bool i){ std::cout << "Hey, a bool! " << std::boolalpha << i << std::endl; } );
 
 
-auto hey3 = ttl::make_illformed_call( hey2 , 0 );
-int i = hey3( 2.0f );
-std::string j = hey3( 1 );
+auto hey3 = ttl::make_illformed_call( []( float x ){ return x; } , 0 );
+auto i = hey3( 2.0f );
+auto j = hey3( "hello" );
 
 int main() 
 {
@@ -103,9 +104,19 @@ int main()
     for( const auto& str : output_vector )
         std::cout << std::endl << str;
     
-        std::cout << std::endl << "(" << std::boolalpha
-              << std::get<0>( numbers ) << "," 
-              << std::get<1>( numbers ) << "," 
-              << std::get<2>( numbers ) << ")" << std::endl;
+    std::cout << std::endl << "(" << std::boolalpha
+          << std::get<0>( numbers ) << "," 
+          << std::get<1>( numbers ) << "," 
+          << std::get<2>( numbers ) << ")" << std::endl;
+    
+        
+    auto f   = [](int , int){};
+    auto ff  = ttl::make_overloaded_function( f );
+    auto iff = ttl::make_illformed_call( ff , 0 );
+    
+    auto riff = iff("haha" , "haha");
+        
+    std::cout << hey3(2.0f) << std::endl;
+    std::cout << hey3(f) << std::endl;
 }
 

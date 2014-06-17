@@ -12,6 +12,7 @@
 #include "Turbo/enable_if.hpp"
 #include "Turbo/function.hpp"
 #include "Turbo/type_traits.hpp"
+#include "Turbo/std_function.hpp"
 
 #include <utility>
 #include <type_traits>
@@ -40,7 +41,7 @@ namespace ttl
         }
         
     private:
-        F _f;
+        tml::std_function<F> _f;
         D _default;
     };
     
