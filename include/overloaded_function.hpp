@@ -11,8 +11,8 @@
 #include <functional>
 #include <type_traits>
 
-#include "Turbo/eval.hpp"
-#include "Turbo/type_traits.hpp"
+#include "../Turbo/eval.hpp"
+#include "../Turbo/type_traits.hpp"
 
 namespace ttl
 {   

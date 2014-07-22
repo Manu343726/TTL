@@ -8,11 +8,11 @@
 #ifndef ALGORITHM_POLICIES_HPP
 #define	ALGORITHM_POLICIES_HPP
 
-#include "Turbo/eval.hpp"
-#include "Turbo/enable_if.hpp"
-#include "Turbo/function.hpp"
-#include "Turbo/type_traits.hpp"
-#include "Turbo/std_function.hpp"
+#include "../Turbo/eval.hpp"
+#include "../Turbo/enable_if.hpp"
+#include "../Turbo/function.hpp"
+#include "../Turbo/type_traits.hpp"
+#include "../Turbo/std_function.hpp"
 
 #include <utility>
 #include <type_traits>
