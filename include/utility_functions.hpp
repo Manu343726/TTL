@@ -15,7 +15,7 @@ namespace ttl
     struct identity
     {
         template<typename T>
-        T operator()( const T& v )
+        T operator()( const T& v ) const
         {
             return v;
         }
@@ -24,14 +24,23 @@ namespace ttl
     struct to_string
     {
         template<typename T>
-        std::string operator()( const T& val )
+        std::string operator()( const T& val ) const
         {
             return std::to_string( val );
         }
         
-        std::string operator()( const char* str )
+        std::string operator()( const char* str ) const
         {
             return { str };
+        }
+    };
+    
+    struct equal
+    {
+        template<typename LHS , typename RHS>
+        bool operator()( const LHS& lhs , const RHS& rhs ) const
+        {
+            return lhs == rhs;
         }
     };
 }

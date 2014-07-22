@@ -118,5 +118,13 @@ int main()
         
     std::cout << hey3(2.0f) << std::endl;
     std::cout << hey3(f) << std::endl;
+    
+    
+    
+    auto tuple1 = std::make_tuple( 1 , 2 );
+    auto tuple2 = std::make_tuple( 1 , 3 );
+    
+    std::cout << ttl::equal( std::begin(tuple1) , std::end(tuple1) , 
+                             std::begin(tuple2) , std::end(tuple2) );
 }
 

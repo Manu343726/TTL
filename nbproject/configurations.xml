@@ -12,6 +12,7 @@
       <itemPath>include/tuple_call.hpp</itemPath>
       <itemPath>include/tuple_iterator.hpp</itemPath>
       <itemPath>include/utility_functions.hpp</itemPath>
+      <itemPath>include/zip_iterator.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="src" displayName="src" projectFiles="true">
       <itemPath>src/main.cpp</itemPath>
@@ -43,11 +44,11 @@
       </toolsSet>
       <compileType>
         <ccTool>
-          <standard>8</standard>
           <incDir>
             <pElem>include</pElem>
             <pElem>.</pElem>
           </incDir>
+          <commandLine>-std=c++1y</commandLine>
         </ccTool>
       </compileType>
       <item path="include/algoritm.hpp" ex="false" tool="3" flavor2="0">
@@ -69,6 +70,8 @@
       <item path="include/tuple_iterator.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/utility_functions.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/zip_iterator.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -117,6 +120,8 @@
       <item path="include/tuple_iterator.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/utility_functions.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/zip_iterator.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/main.cpp" ex="false" tool="1" flavor2="0">
       </item>

@@ -40,6 +40,7 @@ namespace ttl
 
             using tuple_type = std::tuple<ARGS...>;
             using value_type = typename std::tuple_element<INDEX,tuple_type>::type;
+            using reference  = value_type&;
             using index      = std::integral_constant<std::size_t,INDEX>;
             
             static constexpr const bool is_end = false;
@@ -96,6 +97,8 @@ namespace ttl
         class tuple_iterator<INDEX,tml::list<ARGS...>,true>
         {
         public:
+            struct value_type{};
+            struct reference{};
             
             struct tuple_end_value
             {

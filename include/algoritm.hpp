@@ -16,6 +16,7 @@
 #include "Turbo/eval.hpp"
 #include "Turbo/utils/assert.hpp"
 #include "tuple_iterator.hpp"
+#include "zip_iterator.hpp"
 
 #include <tuple>
 #include <type_traits>
@@ -88,7 +89,7 @@ namespace ttl
     void for_each( END begin , END end , F f )
     {}
     
-    template<typename F , typename BEGIN , typename END , TURBO_DISABLE_FUNCTION_IF( tml::Bool<BEGIN::is_end> )>
+    template<typename F , typename BEGIN , typename END , TURBO_DISABLE_FUNCTION_IF( ttl::is_tuple_end_iterator<BEGIN> )>
     void for_each( BEGIN begin , END end , F f )
     {
         if( begin != end )
@@ -105,7 +106,7 @@ namespace ttl
         return state;
     }
     
-    template<typename F , typename E , typename BEGIN , typename END , TURBO_DISABLE_FUNCTION_IF( tml::Bool<BEGIN::is_end> )>
+    template<typename F , typename E , typename BEGIN , typename END , TURBO_DISABLE_FUNCTION_IF( ttl::is_tuple_end_iterator<BEGIN> )>
     E foldl( BEGIN begin , END end , F f , const E& state )
     {
         if( begin != end )
@@ -122,7 +123,7 @@ namespace ttl
         return state;
     }
     
-    template<typename F , typename E , typename BEGIN , typename END , TURBO_DISABLE_FUNCTION_IF( tml::Bool<BEGIN::is_end> )>
+    template<typename F , typename E , typename BEGIN , typename END , TURBO_DISABLE_FUNCTION_IF( ttl::is_tuple_end_iterator<BEGIN> )>
     E foldr( BEGIN begin , END end , F f , const E& state )
     {
         if( begin != end )
@@ -132,6 +133,49 @@ namespace ttl
         else
             return state;
     }
+    
+#if __cplusplus > 201103L //If C++14
+    template<typename BEGIN , typename END , typename P>
+    bool all_of( BEGIN begin , END end , P predicate )
+    {
+        return ttl::foldl( begin , end , [=]( bool state , const auto& value )
+        {
+            return state && predicate( value );
+        },
+        true);
+    }
+    
+    template<typename BEGIN , typename END , typename P>
+    bool any_of( BEGIN begin , END end , P predicate )
+    {
+        return ttl::foldl( begin , end , [=]( bool state , const auto& value )
+        {
+            return state || predicate( value );
+        },
+        false);
+    }
+    
+    template<typename BEGIN , typename END , typename P>
+    bool none_of( BEGIN begin , END end , P predicate )
+    {
+        return ttl::foldl( begin , end , [=]( bool state , const auto& value )
+        {
+            return state && !predicate( value );
+        },
+        true);
+    }
+    
+    template<typename FIRST1 , typename LAST1 , typename FIRST2 , typename LAST2 , typename E = ttl::equal>
+    bool equal( FIRST1 first1 , LAST1 last1 , FIRST2 first2 , LAST2 last2 , E equal = ttl::equal{} )
+    {
+        return ttl::foldl( ttl::zip( first1 , first2 ) , ttl::zip( last1 , last2 ) , [=]( bool state , const auto& zip )
+        {
+            return state && equal( std::get<0>( zip ) , std::get<1>( zip ) );
+        },
+        true);
+    }
+    
+#endif /* C++14 */
     
     namespace impl
     {
